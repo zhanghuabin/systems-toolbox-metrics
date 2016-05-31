@@ -15,7 +15,7 @@
 (defn system-utilization
   []
   (let [^MemoryUsage mem-usage (.getHeapMemoryUsage mem-mx-bean)]
-    {:system-load-avg (.getSystemLoadAverage os-mx-bean)
+    {:system-load-avg (max 0 (.getSystemLoadAverage os-mx-bean))
      :available-cpus  (.getAvailableProcessors os-mx-bean)
      :heap-used       (.getUsed mem-usage)
      :heap-max        (.getMax mem-usage)
